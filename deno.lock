@@ -2,6 +2,8 @@
   "version": "5",
   "specifiers": {
     "jsr:@db/redis@0.40": "0.40.0",
+    "jsr:@hono/hono@^4.8.3": "4.8.5",
+    "jsr:@hono/zod-validator@~0.7.1": "0.7.1",
     "jsr:@openai/openai@^5.9.2": "5.10.0",
     "jsr:@std/assert@^1.0.13": "1.0.13",
     "jsr:@std/async@1": "1.0.13",
@@ -32,6 +34,15 @@
         "jsr:@std/io",
         "jsr:@std/random",
         "npm:cluster-key-slot"
+      ]
+    },
+    "@hono/hono@4.8.5": {
+      "integrity": "78f72e532f378e379915a7e1ae7bd8a171b02324bd37b70877fd35375e8c2d6b"
+    },
+    "@hono/zod-validator@0.7.1": {
+      "integrity": "9a82722944e443607e1a65a1fb4e5b81e3665070caf0d6d4363ba0b8ec159396",
+      "dependencies": [
+        "jsr:@hono/hono"
       ]
     },
     "@openai/openai@5.10.0": {
@@ -124,6 +135,7 @@
   "workspace": {
     "dependencies": [
       "jsr:@db/redis@0.40",
+      "jsr:@hono/zod-validator@~0.7.1",
       "jsr:@openai/openai@^5.9.2",
       "jsr:@std/assert@^1.0.13",
       "jsr:@std/fs@^1.0.19",

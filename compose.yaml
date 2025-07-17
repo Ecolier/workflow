@@ -9,7 +9,7 @@ services:
       cache:
         condition: service_healthy
 
-  api-test:
+  tests:
     extends:
       service: api
     command: ["task", "test"]

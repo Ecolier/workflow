@@ -1,22 +1,24 @@
-import { Context } from "hono";
 import { workflowSchema } from "../schemas/workflow-schemas.ts";
 import { Redis } from "@db/redis";
+import { zValidator } from "@hono/zod-validator";
 
+/**
+ * Creates a new workflow by validating the input schema and storing it in Redis.
+ * @param redis - The Redis client to store the workflow.
+ * @returns A Hono middleware function that handles the creation of the workflow.
+ */
 export default function createWorkflow(redis: Redis) {
-  return async (c: Context) => {
-    const body = await c.req.json();
+  return zValidator("json", workflowSchema, async (result, context) => {
 
-    // If validation fails, return a 400 Bad Request with the error details
-    const validation = workflowSchema.safeParse(body);
-    if (!validation.success) {
-      return c.json({ errors: validation.error }, 400);
+    if (!result.success) {
+      return context.json({ errors: result.error }, 400);
     }
 
     // Store the validated workflow in Redis
-    const workflow = validation.data;
+    const workflow = result.data;
     await redis.set('workflow', JSON.stringify(workflow));
 
     // Respond with a 204 No Content status
     return new Response(null, { status: 204 });
-  };
+  });
 }
