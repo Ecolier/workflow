@@ -1,12 +1,13 @@
 {
   "tasks": {
     "dev": "deno serve -A --watch --env-file=.env --env-file=.env.secret main.ts",
-    "test": "deno test -A --env-file"
+    "test": "deno test -A --env-file=.env --env-file=.env.secret"
   },
   "imports": {
     "@db/redis": "jsr:@db/redis@^0.40.0",
     "@openai/openai": "jsr:@openai/openai@^5.9.2",
     "@std/assert": "jsr:@std/assert@^1.0.13",
+    "@std/fs": "jsr:@std/fs@^1.0.19",
     "dotenv": "npm:dotenv@^17.2.0",
     "envalid": "npm:envalid@^8.1.0",
     "hono": "npm:hono@^4.8.5",

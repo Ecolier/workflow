@@ -1,5 +1,5 @@
 {
-  "$schema": "https://raw.githubusercontent.com/ecolier/workflow/main/workflow-schema.json",
+  "$schema": "https://raw.githubusercontent.com/ecolier/workflow/main/create-workflow-schema.json",
   "nodes": [
     {
       "id": "start",

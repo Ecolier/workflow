@@ -14,14 +14,14 @@ const openAI = new OpenAI({
   apiKey: OPENAI_API_KEY,
 });
 
-using redis = await connect({
+const redis = await connect({
   hostname: CACHE_HOSTNAME,
   signal: () => AbortSignal.timeout(5_000),
 });
 
 const app = new Hono();
 
-app.post("/create-workflow", createWorkflow(openAI, redis));
+app.post("/create-workflow", createWorkflow(redis));
 app.post("/run-workflow", runWorkflow(openAI, redis));
 
 export default app;
