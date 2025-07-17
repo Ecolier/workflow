@@ -1,0 +1,73 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Workflow Schema",
+  "description": "Schema for defining workflow nodes and their connections",
+  "type": "object",
+  "required": ["nodes"],
+  "properties": {
+    "nodes": {
+      "type": "array",
+      "description": "Array of workflow nodes",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "prompt"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the node",
+            "pattern": "^[a-zA-Z0-9_-]+$",
+            "examples": ["start", "summarize_en", "translate_to_en", "reply"]
+          },
+          "prompt": {
+            "type": "string",
+            "description": "The prompt template for this node. Can contain placeholders like {{input}} or {{lastOutput}}",
+            "minLength": 1,
+            "examples": [
+              "What is the language of this message, answer with 'french' if it is french or else 'english'?\nMessage: {{input}}",
+              "Please summarize the following English message in a concise and professional manner:\n{{lastOutput}}"
+            ]
+          },
+          "condition": {
+            "type": "object",
+            "description": "Conditional routing based on the output of this node. Keys are possible outputs, values are next node IDs",
+            "additionalProperties": {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9_-]+$"
+            },
+            "examples": [
+              {
+                "english": "summarize_en",
+                "french": "translate_to_en"
+              }
+            ]
+          },
+          "next": {
+            "type": "string",
+            "description": "The ID of the next node to execute if no condition is specified",
+            "pattern": "^[a-zA-Z0-9_-]+$",
+            "examples": ["reply", "summarize_en"]
+          }
+        },
+        "additionalProperties": false,
+        "anyOf": [
+          {
+            "required": ["condition"]
+          },
+          {
+            "required": ["next"]
+          },
+          {
+            "not": {
+              "anyOf": [
+                {"required": ["condition"]},
+                {"required": ["next"]}
+              ]
+            }
+          }
+        ]
+      }
+    }
+  },
+  "additionalProperties": false
+}

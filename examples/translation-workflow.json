@@ -1,0 +1,27 @@
+{
+  "$schema": "https://raw.githubusercontent.com/ecolier/workflow/main/workflow-schema.json",
+  "nodes": [
+    {
+      "id": "start",
+      "prompt": "What is the language of this message, answer with 'french' if it is french or else 'english'?\nMessage: {{input}}",
+      "condition": {
+        "english": "summarize_en",
+        "french": "translate_to_en"
+      }
+    },
+    {
+      "id": "summarize_en",
+      "prompt": "Please summarize the following English message in a concise and professional manner:\n{{lastOutput}}",
+      "next": "reply"
+    },
+    {
+      "id": "translate_to_en",
+      "prompt": "Please translate the following French message to English and then provide a brief summary:\n{{lastOutput}}",
+      "next": "summarize_en"
+    },
+    {
+      "id": "reply",
+      "prompt": "Workflow completed. Final result: {{lastOutput}}"
+    }
+  ]
+}

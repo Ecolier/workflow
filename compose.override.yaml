@@ -1,0 +1,9 @@
+services:
+  api:
+    build:
+      target: development
+    develop:
+      watch:
+        - path: ./
+          target: /app
+          action: sync

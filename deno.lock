@@ -1,0 +1,119 @@
+{
+  "version": "5",
+  "specifiers": {
+    "jsr:@db/redis@0.40": "0.40.0",
+    "jsr:@openai/openai@^5.9.2": "5.10.0",
+    "jsr:@std/assert@^1.0.13": "1.0.13",
+    "jsr:@std/async@1": "1.0.13",
+    "jsr:@std/bytes@1": "1.0.6",
+    "jsr:@std/bytes@^1.0.2-rc.3": "1.0.6",
+    "jsr:@std/collections@1": "1.1.2",
+    "jsr:@std/internal@^1.0.6": "1.0.9",
+    "jsr:@std/io@0.224.5": "0.224.5",
+    "jsr:@std/random@0.1.0": "0.1.0",
+    "npm:@types/node@*": "22.15.15",
+    "npm:cluster-key-slot@1.1.0": "1.1.0",
+    "npm:dotenv@^17.2.0": "17.2.0",
+    "npm:envalid@^8.1.0": "8.1.0",
+    "npm:hono@^4.8.5": "4.8.5",
+    "npm:zod@3": "3.25.76",
+    "npm:zod@^4.0.5": "4.0.5"
+  },
+  "jsr": {
+    "@db/redis@0.40.0": {
+      "integrity": "98bef146ad2d1262c0a5388c32e9d62e83ada410c9cc49cee3868085037e930b",
+      "dependencies": [
+        "jsr:@std/async",
+        "jsr:@std/bytes@1",
+        "jsr:@std/collections",
+        "jsr:@std/io",
+        "jsr:@std/random",
+        "npm:cluster-key-slot"
+      ]
+    },
+    "@openai/openai@5.10.0": {
+      "integrity": "dd7aeef90e184a408478bd87e95c925cd606f60450b0486e325b8b76b5ac8d81",
+      "dependencies": [
+        "npm:zod@3"
+      ]
+    },
+    "@std/assert@1.0.13": {
+      "integrity": "ae0d31e41919b12c656c742b22522c32fb26ed0cba32975cb0de2a273cb68b29",
+      "dependencies": [
+        "jsr:@std/internal"
+      ]
+    },
+    "@std/async@1.0.13": {
+      "integrity": "1d76ca5d324aef249908f7f7fe0d39aaf53198e5420604a59ab5c035adc97c96"
+    },
+    "@std/bytes@1.0.6": {
+      "integrity": "f6ac6adbd8ccd99314045f5703e23af0a68d7f7e58364b47d2c7f408aeb5820a"
+    },
+    "@std/collections@1.1.2": {
+      "integrity": "f1685dd45c3ec27c39d0e8a642ccf810f391ec8a6cb5e7355926e6dacc64c43e"
+    },
+    "@std/internal@1.0.9": {
+      "integrity": "bdfb97f83e4db7a13e8faab26fb1958d1b80cc64366501af78a0aee151696eb8"
+    },
+    "@std/io@0.224.5": {
+      "integrity": "cb84fe655d1273fca94efcff411465027a8b0b4225203f19d6ee98d9c8920a2d",
+      "dependencies": [
+        "jsr:@std/bytes@^1.0.2-rc.3"
+      ]
+    },
+    "@std/random@0.1.0": {
+      "integrity": "70a006be0ffb77d036bab54aa8ae6bd0119ba77ace0f2f56f63273d4262a5667"
+    }
+  },
+  "npm": {
+    "@types/node@22.15.15": {
+      "integrity": "sha512-R5muMcZob3/Jjchn5LcO8jdKwSCbzqmPB6ruBxMcf9kbxtniZHP327s6C37iOfuw8mbKK3cAQa7sEl7afLrQ8A==",
+      "dependencies": [
+        "undici-types"
+      ]
+    },
+    "cluster-key-slot@1.1.0": {
+      "integrity": "sha512-2Nii8p3RwAPiFwsnZvukotvow2rIHM+yQ6ZcBXGHdniadkYGZYiGmkHJIbZPIV9nfv7m/U1IPMVVcAhoWFeklw=="
+    },
+    "dotenv@17.2.0": {
+      "integrity": "sha512-Q4sgBT60gzd0BB0lSyYD3xM4YxrXA9y4uBDof1JNYGzOXrQdQ6yX+7XIAqoFOGQFOTK1D3Hts5OllpxMDZFONQ=="
+    },
+    "envalid@8.1.0": {
+      "integrity": "sha512-OT6+qVhKVyCidaGoXflb2iK1tC8pd0OV2Q+v9n33wNhUJ+lus+rJobUj4vJaQBPxPZ0vYrPGuxdrenyCAIJcow==",
+      "dependencies": [
+        "tslib"
+      ]
+    },
+    "fsevents@2.3.3": {
+      "integrity": "sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==",
+      "os": ["darwin"],
+      "scripts": true
+    },
+    "hono@4.8.5": {
+      "integrity": "sha512-Up2cQbtNz1s111qpnnECdTGqSIUIhZJMLikdKkshebQSEBcoUKq6XJayLGqSZWidiH0zfHRCJqFu062Mz5UuRA=="
+    },
+    "tslib@2.8.1": {
+      "integrity": "sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w=="
+    },
+    "undici-types@6.21.0": {
+      "integrity": "sha512-iwDZqg0QAGrg9Rav5H4n0M64c3mkR59cJ6wQp+7C4nI0gsmExaedaYLNO44eT4AtBBwjbTiGPMlt2Md0T9H9JQ=="
+    },
+    "zod@3.25.76": {
+      "integrity": "sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ=="
+    },
+    "zod@4.0.5": {
+      "integrity": "sha512-/5UuuRPStvHXu7RS+gmvRf4NXrNxpSllGwDnCBcJZtQsKrviYXm54yDGV2KYNLT5kq0lHGcl7lqWJLgSaG+tgA=="
+    }
+  },
+  "workspace": {
+    "dependencies": [
+      "jsr:@db/redis@0.40",
+      "jsr:@openai/openai@^5.9.2",
+      "jsr:@std/assert@^1.0.13",
+      "npm:dotenv@^17.2.0",
+      "npm:envalid@^8.1.0",
+      "npm:hono@^4.8.5",
+      "npm:zod@^4.0.5"
+    ]
+  }
+}
