@@ -4,11 +4,10 @@ import { Redis } from "@db/redis";
 
 export default function runWorkflow(openAI: OpenAI, redis: Redis) {
   return async (c: Context) => {
-    const { name, steps } = await c.req.json();
-    // Run the workflow using the provided name and steps
-    return c.json({
-      message: "Workflow run successfully",
-      workflow: { name, steps },
-    });
+    const workflow = await redis.get('workflow');
+    if (!workflow) {
+      return c.json({ error: "No workflow has been created yet" }, 400);
+    }
+    return c.json({ message: "Workflow is ready to run" }, 200);
   };
 }
