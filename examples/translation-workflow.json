@@ -2,7 +2,7 @@
   "$schema": "https://raw.githubusercontent.com/ecolier/workflow/main/workflow-schema.json",
   "nodes": [
     {
-      "id": "start",
+      "id": "detect_language",
       "prompt": "What is the language of this message, answer with 'french' if it is french or else 'english'?\nMessage: {{input}}",
       "condition": {
         "english": "summarize_en",
@@ -21,7 +21,7 @@
     },
     {
       "id": "reply",
-      "prompt": "Workflow completed. Final result: {{lastOutput}}"
+      "prompt": "User wants to adopt a friendly tone, reply to the following in a friendly manner: {{lastOutput}}"
     }
   ]
 }

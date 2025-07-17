@@ -1,4 +1,4 @@
-import { OPENAI_API_KEY, CACHE_HOSTNAME } from "./config.ts";
+import { OPENAI_API_KEY, CACHE_HOSTNAME, OPENAI_MODEL, OPENAI_TEMPERATURE } from "./config.ts";
 
 import { Hono } from "hono";
 import createWorkflow from "./routes/create-workflow.ts";
@@ -18,6 +18,6 @@ export const redis = await connect({
 const app = new Hono();
 
 app.post("/create-workflow", createWorkflow(redis));
-app.post("/run-workflow", runWorkflow(openAI, redis));
+app.post("/run-workflow", runWorkflow(redis, openAI, OPENAI_MODEL, OPENAI_TEMPERATURE));
 
 export default app;
