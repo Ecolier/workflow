@@ -5,7 +5,7 @@ import fakeOpenAI from "./mocks/language-model.stub.ts";
 import { assertGreater } from "@std/assert/greater";
 
 Deno.test(
-  "Executes a translation, summarization and reply workflow",
+  "Executes a workflow that conditionally translates, summarizes and returns the final output",
   async () => {
     const finalOutput = await executeWorkflow(
       mockWorkflowGraph,

@@ -19,4 +19,4 @@ FROM denoland/deno:latest AS production
 WORKDIR /app
 COPY --from=cache /app .
 ENTRYPOINT ["deno"]
-CMD ["serve", "main.ts"]
+CMD ["task", "serve"]
