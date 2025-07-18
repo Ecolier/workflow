@@ -1,6 +1,6 @@
-import { string, z } from "zod";
+import * as z from "zod";
 
-export const workflowNodeSchema = z.object({
+export const createWorkflowNodeSchema = z.object({
   id: z.string().nonempty("Node ID is required"),
   prompt: z.string().nonempty("Prompt is required"),
   condition: z
@@ -12,9 +12,11 @@ export const workflowNodeSchema = z.object({
   next: z.string().optional(),
 });
 
-export const workflowSchema = z
+export const createWorkflowSchema = z
   .object({
-    nodes: workflowNodeSchema.array().nonempty("At least one node is required"),
+    nodes: createWorkflowNodeSchema
+      .array()
+      .nonempty("At least one node is required"),
   })
   .check(({ value, issues }) => {
     const validIds = value.nodes.map((node) => node.id);
@@ -35,10 +37,5 @@ export const workflowSchema = z
     });
   });
 
-export const workflowInputSchema = z.object({
-  input: string().nonempty("Input is required"),
-});
-
-export type Workflow = z.infer<typeof workflowSchema>;
-export type WorkflowNode = z.infer<typeof workflowNodeSchema>;
-export type WorkflowInput = z.infer<typeof workflowInputSchema>;
+export type CreateWorkflow = z.infer<typeof createWorkflowSchema>;
+export type CreateWorkflowNode = z.infer<typeof createWorkflowNodeSchema>;

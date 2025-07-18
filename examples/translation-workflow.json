@@ -11,12 +11,12 @@
     },
     {
       "id": "summarize_en",
-      "prompt": "Please summarize the following English message in a concise and professional manner:\n{{lastOutput}}",
+      "prompt": "Please summarize the following English message in a concise and professional manner:\n{{input}}",
       "next": "reply"
     },
     {
       "id": "translate_to_en",
-      "prompt": "Please translate the following French message to English and then provide a brief summary:\n{{lastOutput}}",
+      "prompt": "Please translate the following French message to English and then provide a brief summary:\n{{input}}",
       "next": "summarize_en"
     },
     {

@@ -5,10 +5,9 @@
   },
   "imports": {
     "@db/redis": "jsr:@db/redis@^0.40.0",
-    "@hono/zod-validator": "jsr:@hono/zod-validator@^0.7.1",
-    "@openai/openai": "jsr:@openai/openai@^5.9.2",
+    "@hono/zod-validator": "npm:@hono/zod-validator@^0.7.1",
+    "@openai/openai": "jsr:@openai/openai@^5.10.1",
     "@std/assert": "jsr:@std/assert@^1.0.13",
-    "@std/fs": "jsr:@std/fs@^1.0.19",
     "dotenv": "npm:dotenv@^17.2.0",
     "envalid": "npm:envalid@^8.1.0",
     "hono": "npm:hono@^4.8.5",

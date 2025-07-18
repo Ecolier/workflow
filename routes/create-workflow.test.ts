@@ -1,12 +1,8 @@
 import { assertEquals } from "@std/assert";
-import createRequest from "../utils/create-request.ts";
+import createRequest from "../test-utils/create-request.ts";
 import app from "../main.ts";
 
-// Example workflow for translation
-// This is a valid workflow that can be used for testing
-const translationWorkflow = new TextDecoder("utf-8").decode(
-  Deno.readFileSync("./examples/translation-workflow.json")
-);
+import translationWorkflow from "../examples/translation-workflow.json" with { type: "json" };
 
 // Invalid workflow example with unreferenced node
 // The 'pick_numbers' node is not referenced in the workflow
@@ -25,7 +21,7 @@ const invalidWorkflow = {
 };
 
 Deno.test("POST /create-workflow returns 204 for valid request", async () => {
-  const request = createRequest("/create-workflow", translationWorkflow);
+  const request = createRequest("/create-workflow", JSON.stringify(translationWorkflow));
   const res = await app.fetch(request);
   assertEquals(res.status, 204);
 });

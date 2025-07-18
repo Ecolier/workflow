@@ -2,20 +2,16 @@
   "version": "5",
   "specifiers": {
     "jsr:@db/redis@0.40": "0.40.0",
-    "jsr:@hono/hono@^4.8.3": "4.8.5",
-    "jsr:@hono/zod-validator@~0.7.1": "0.7.1",
-    "jsr:@openai/openai@^5.9.2": "5.10.0",
+    "jsr:@openai/openai@^5.10.1": "5.10.1",
     "jsr:@std/assert@^1.0.13": "1.0.13",
     "jsr:@std/async@1": "1.0.13",
     "jsr:@std/bytes@1": "1.0.6",
     "jsr:@std/bytes@^1.0.2-rc.3": "1.0.6",
     "jsr:@std/collections@1": "1.1.2",
-    "jsr:@std/fs@^1.0.19": "1.0.19",
     "jsr:@std/internal@^1.0.6": "1.0.9",
-    "jsr:@std/internal@^1.0.9": "1.0.9",
     "jsr:@std/io@0.224.5": "0.224.5",
-    "jsr:@std/path@^1.1.1": "1.1.1",
     "jsr:@std/random@0.1.0": "0.1.0",
+    "npm:@hono/zod-validator@~0.7.1": "0.7.1_hono@4.8.5_zod@3.25.76",
     "npm:@types/node@*": "22.15.15",
     "npm:cluster-key-slot@1.1.0": "1.1.0",
     "npm:dotenv@^17.2.0": "17.2.0",
@@ -36,17 +32,8 @@
         "npm:cluster-key-slot"
       ]
     },
-    "@hono/hono@4.8.5": {
-      "integrity": "78f72e532f378e379915a7e1ae7bd8a171b02324bd37b70877fd35375e8c2d6b"
-    },
-    "@hono/zod-validator@0.7.1": {
-      "integrity": "9a82722944e443607e1a65a1fb4e5b81e3665070caf0d6d4363ba0b8ec159396",
-      "dependencies": [
-        "jsr:@hono/hono"
-      ]
-    },
-    "@openai/openai@5.10.0": {
-      "integrity": "dd7aeef90e184a408478bd87e95c925cd606f60450b0486e325b8b76b5ac8d81",
+    "@openai/openai@5.10.1": {
+      "integrity": "9cf9964c2045f76c4cb4b901733b45ddc5c48839081fe80da28ef1b41c402bd3",
       "dependencies": [
         "npm:zod@3"
       ]
@@ -54,7 +41,7 @@
     "@std/assert@1.0.13": {
       "integrity": "ae0d31e41919b12c656c742b22522c32fb26ed0cba32975cb0de2a273cb68b29",
       "dependencies": [
-        "jsr:@std/internal@^1.0.6"
+        "jsr:@std/internal"
       ]
     },
     "@std/async@1.0.13": {
@@ -66,13 +53,6 @@
     "@std/collections@1.1.2": {
       "integrity": "f1685dd45c3ec27c39d0e8a642ccf810f391ec8a6cb5e7355926e6dacc64c43e"
     },
-    "@std/fs@1.0.19": {
-      "integrity": "051968c2b1eae4d2ea9f79a08a3845740ef6af10356aff43d3e2ef11ed09fb06",
-      "dependencies": [
-        "jsr:@std/internal@^1.0.9",
-        "jsr:@std/path"
-      ]
-    },
     "@std/internal@1.0.9": {
       "integrity": "bdfb97f83e4db7a13e8faab26fb1958d1b80cc64366501af78a0aee151696eb8"
     },
@@ -82,17 +62,18 @@
         "jsr:@std/bytes@^1.0.2-rc.3"
       ]
     },
-    "@std/path@1.1.1": {
-      "integrity": "fe00026bd3a7e6a27f73709b83c607798be40e20c81dde655ce34052fd82ec76",
-      "dependencies": [
-        "jsr:@std/internal@^1.0.9"
-      ]
-    },
     "@std/random@0.1.0": {
       "integrity": "70a006be0ffb77d036bab54aa8ae6bd0119ba77ace0f2f56f63273d4262a5667"
     }
   },
   "npm": {
+    "@hono/zod-validator@0.7.1_hono@4.8.5_zod@3.25.76": {
+      "integrity": "sha512-8+vJT1RvezAx5sN7hiZ5Mis0RMuFL77nBEcqQQgT9ufoLkxr+7ll461WlBJQcGoQSY6EGMClVae19v3s/7bbgQ==",
+      "dependencies": [
+        "hono",
+        "zod@3.25.76"
+      ]
+    },
     "@types/node@22.15.15": {
       "integrity": "sha512-R5muMcZob3/Jjchn5LcO8jdKwSCbzqmPB6ruBxMcf9kbxtniZHP327s6C37iOfuw8mbKK3cAQa7sEl7afLrQ8A==",
       "dependencies": [
@@ -135,10 +116,9 @@
   "workspace": {
     "dependencies": [
       "jsr:@db/redis@0.40",
-      "jsr:@hono/zod-validator@~0.7.1",
-      "jsr:@openai/openai@^5.9.2",
+      "jsr:@openai/openai@^5.10.1",
       "jsr:@std/assert@^1.0.13",
-      "jsr:@std/fs@^1.0.19",
+      "npm:@hono/zod-validator@~0.7.1",
       "npm:dotenv@^17.2.0",
       "npm:envalid@^8.1.0",
       "npm:hono@^4.8.5",

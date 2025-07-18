@@ -1,12 +1,10 @@
 import { assertEquals } from "@std/assert";
-import createRequest from "../utils/create-request.ts";
+import createRequest from "../test-utils/create-request.ts";
 import app, { redis } from "../main.ts";
 
-const translationInput = new TextDecoder("utf-8").decode(
-  Deno.readFileSync("./examples/translation-input.json")
-);
+import translationInput from "../examples/translation-input.json" with { type: "json" };
 
-const request = createRequest("/run-workflow", translationInput);
+const request = createRequest("/run-workflow", JSON.stringify(translationInput));
 
 Deno.test(
   "POST /run-workflow returns 200 for successful operation",
