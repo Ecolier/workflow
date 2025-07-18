@@ -68,6 +68,7 @@ export default async function executeWorkflow(
   input: string,
   handlePrompt: HandlePromptFn
 ): Promise<string> {
+
   /* Executes a single node in the workflow, populating its prompt and determining the next node.
    * @param context - The current execution context containing input, last output, and current node ID.
    * @returns The output of the node and the ID of the next node to execute.
@@ -92,6 +93,7 @@ export default async function executeWorkflow(
     executionPath: [],
   };
 
+  // Execute nodes until a terminal node is reached or no next node is defined
   while (context.currentNodeId) {
     const result = await executeNode(context);
     context.lastOutput = result.output;

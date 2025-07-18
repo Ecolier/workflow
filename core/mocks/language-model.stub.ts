@@ -15,6 +15,12 @@ const replies = [
   "I've completed the task.",
 ];
 
+/**
+ * Mock OpenAI client for testing purposes.
+ * This simulates the OpenAI API response for a given prompt.
+ * It randomly selects a response from a predefined set of replies.
+ * If the prompt contains conditions in square brackets, it randomly selects one of those conditions.
+ */
 const create = async (prompt: string): Promise<OpenAIResponse> =>
   await new Promise((resolve) => {
     const matchedConditions = [...prompt.matchAll(/[\[](.*?)[\]]/g)].map(
