@@ -6,7 +6,7 @@ import executeWorkflow from "../core/workflow-executor.ts";
 import { workflowGraphSchema } from "../core/schemas/workflow-schema.ts";
 
 type ChatMessage = {
-  role: 'system' | 'user' | 'assistant';
+  role: "system" | "user" | "assistant";
   content: string;
 };
 
@@ -63,19 +63,21 @@ export default function runWorkflow(
         parseWorkflowGraph.data,
         parseWorkflowInput.data.input,
         async (prompt) => {
-          messages.push({ role: 'user', content: prompt });
+          messages.push({ role: "user", content: prompt });
+
           // Call OpenAI API with the prompt
-          const response = await openAI.chat.completions.create({
+          const chatCompletion = await openAI.chat.completions.create({
             model: openAIModel,
             messages,
             temperature: openAITemperature,
           });
-          if (response.choices.length === 0) {
+          if (chatCompletion.choices.length === 0) {
             throw new Error("No response from OpenAI");
           }
-          const responseMessage = response.choices[0].message.content || "";
+          const responseMessage =
+            chatCompletion.choices[0].message.content || "";
           console.log("OpenAI response:", responseMessage);
-          messages.push({ role: 'assistant', content: responseMessage });
+          messages.push({ role: "assistant", content: responseMessage });
           return responseMessage;
         }
       );
