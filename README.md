@@ -1,11 +1,10 @@
 # Workflow API
 
-A powerful, high-performance workflow engine that orchestrates LLM-powered decision trees with intelligent caching. Built with Deno, Hono, and Redis for optimal performance and scalability.
+A workflow engine that orchestrates LLM-powered processing trees. Built with Deno, Hono, and Redis.
 
 ## 🚀 Features
 
 - **🤖 LLM Integration**: Seamless OpenAI integration with configurable models
-- **⚡ Smart Caching**: Redis-powered caching to minimize API calls and reduce latency
 - **🔄 Dynamic Workflows**: Create complex, conditional workflows with branching logic
 - **📝 Template Variables**: Support for `{{input}}` and `{{lastOutput}}` placeholders
 - **🔧 Type-Safe**: Full TypeScript support with JSON Schema validation
@@ -41,7 +40,7 @@ A powerful, high-performance workflow engine that orchestrates LLM-powered decis
    
    # .env (optional overrides)
    OPENAI_MODEL=gpt-4
-   OPENAI_TEMPERATURE=0.1
+   OPENAI_TEMPERATURE=0
    CACHE_HOSTNAME=localhost
    API_PORT=8000
    ```
@@ -60,10 +59,10 @@ A powerful, high-performance workflow engine that orchestrates LLM-powered decis
 
 ```bash
 # Development
-docker compose up
+docker compose up api # supports --watch 
 
 # Production
-docker compose -f compose.yaml -f compose.production.yaml up
+docker compose -f compose.yaml -f compose.production.yaml up api
 ```
 
 ## 🎯 API Endpoints
@@ -106,7 +105,9 @@ Creates a new workflow from a list of interconnected nodes.
 }
 ```
 
-**Response:** `204 No Content` - Workflow created successfully
+**Response:** 
+- `204 No Content` - Workflow created successfully
+- `400` - Malformed request (or failed validation)
 
 ### Run Workflow
 ```http
@@ -209,7 +210,7 @@ Environment variables can be configured in `.env` and `.env.secret`:
 deno task test
 
 # Run specific test file
-deno test specific-test.ts -A --env-file=.env --env-file=.env.secret
+deno task test specific-test.ts
 ```
 
 ## 📚 Examples
@@ -252,26 +253,6 @@ See `examples/translation-workflow.json` for a complete example that:
 3. Summarizes the content
 4. Generates a friendly response
 
-## 🚀 Performance Features
-
-### Intelligent Caching
-- **Redis Integration**: Fast, distributed caching
-- **Smart Cache Keys**: Based on prompt templates and inputs
-- **Cost Optimization**: Reduces OpenAI API calls by up to 90%
-
-### Optimized Architecture
-- **Deno Runtime**: Modern, secure JavaScript/TypeScript
-- **Hono Framework**: Ultra-fast web framework
-- **Type Safety**: Full TypeScript with runtime validation
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
@@ -282,7 +263,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [Deno](https://deno.land/)
 - [Hono](https://hono.dev/)
 - [Redis](https://redis.io/)
-
----
-
-**Built with ❤️ using Deno and modern web technologies**
