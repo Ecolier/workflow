@@ -1,6 +1,6 @@
 import { assertEquals } from "@std/assert";
 import createRequest from "../test-utils/create-request.ts";
-import app, { redis } from "../main.ts";
+import app, {cache} from "../main.ts";
 
 import translationInput from "../examples/translation-input.json" with { type: "json" };
 
@@ -16,7 +16,7 @@ Deno.test(
 
 Deno.test("POST /run-workflow returns 400 for missing workflow", async () => {
   // Clear the workflow from Redis to simulate the case where no workflow has been created
-  redis.del("workflow");
+  cache.del("workflow");
   const res = await app.fetch(request);
   assertEquals(res.status, 400);
 });

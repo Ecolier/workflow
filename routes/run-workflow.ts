@@ -1,18 +1,8 @@
-import OpenAI from "@openai/openai";
-import { Redis } from "@db/redis";
 import { zValidator } from "@hono/zod-validator";
 import { runWorkflowInputSchema } from "../schemas/run-workflow-schema.ts";
 import executeWorkflow from "../core/workflow-executor.ts";
 import { workflowGraphSchema } from "../core/schemas/workflow-schema.ts";
-
-type ChatMessage = {
-  role: "system" | "user" | "assistant";
-  content: string;
-};
-
-// Initialize an array to hold chat messages for the workflow execution
-// This will be used to maintain the conversation context with OpenAI
-const messages: ChatMessage[] = [];
+import Cache from "../types/cache.ts";
 
 /**
  * Runs a workflow by validating the input schema and checking if a workflow exists in Redis.
@@ -21,10 +11,8 @@ const messages: ChatMessage[] = [];
  * @returns A Hono middleware function that handles running the workflow.
  */
 export default function runWorkflow(
-  redis: Redis,
-  openAI: OpenAI,
-  openAIModel: string,
-  openAITemperature: number
+  cache: Cache,
+  createPromptHandler: () => (prompt: string) => Promise<string>,
 ) {
   return zValidator(
     "json",
@@ -35,7 +23,7 @@ export default function runWorkflow(
       }
 
       // Check if the workflow graph exists in Redis
-      const workflowGraphReply = await redis.get("workflow");
+      const workflowGraphReply = await cache.get("workflow");
       if (!workflowGraphReply) {
         return context.json({ error: "No workflow has been created yet" }, 400);
       }
@@ -58,28 +46,13 @@ export default function runWorkflow(
         );
       }
 
+      const handlePrompt = createPromptHandler();
+
       // Execute the workflow with the provided input and prompt handling function
       const lastOutput = await executeWorkflow(
         parseWorkflowGraph.data,
         parseWorkflowInput.data.input,
-        async (prompt) => {
-          messages.push({ role: "user", content: prompt });
-
-          // Call OpenAI API with the prompt
-          const chatCompletion = await openAI.chat.completions.create({
-            model: openAIModel,
-            messages,
-            temperature: openAITemperature,
-          });
-          if (chatCompletion.choices.length === 0) {
-            throw new Error("No response from OpenAI");
-          }
-          const responseMessage =
-            chatCompletion.choices[0].message.content || "";
-          console.log("OpenAI response:", responseMessage);
-          messages.push({ role: "assistant", content: responseMessage });
-          return responseMessage;
-        }
+        handlePrompt,
       );
 
       return context.json({ message: lastOutput }, 200);
